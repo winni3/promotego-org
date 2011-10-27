@@ -1,6 +1,6 @@
 class Location < ActiveRecord::Base
   class LocationHeader < Struct.new(:geocode_address, :geocode_precision, :distance); end
-  
+
   acts_as_mappable
   belongs_to :type
   belongs_to :user
@@ -39,7 +39,7 @@ class Location < ActiveRecord::Base
 
     write_attribute(:user_id, new_user_id)
   end
-    
+
 
   # Geocode the address represented by this location, storing the result in
   # lat and lng and returning the geocode object if it was successful, or nil

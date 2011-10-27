@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "/types/show.html.erb" do
   include TypesHelper
-  
+
   before(:each) do
     @type = mock_model(Type)
     @type.stub!(:name).and_return("MyString")

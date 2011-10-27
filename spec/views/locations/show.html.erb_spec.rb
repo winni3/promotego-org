@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "/locations/show.html.erb" do
   include LocationsHelper
-  
+
   before(:each) do
     @location = mock_model(Location, Location.valid_options)
     @location.stub!(:city_state_zip).and_return('City, State 00000')

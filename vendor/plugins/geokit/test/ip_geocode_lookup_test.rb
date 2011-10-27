@@ -7,7 +7,7 @@ require 'mocha'
 
 class LocationAwareController < ActionController::Base #:nodoc: all
   geocode_ip_address
-  
+
   def index
     render :nothing => true
   end
@@ -19,11 +19,11 @@ end
 
 # Re-raise errors caught by the controller.
 class LocationAwareController #:nodoc: all
-  def rescue_action(e) raise e end; 
+  def rescue_action(e) raise e end;
 end
 
 class IpGeocodeLookupTest < Test::Unit::TestCase #:nodoc: all
-  
+
   def setup
     @success = GeoKit::GeoLoc.new
     @success.provider = "hostip"
@@ -33,12 +33,12 @@ class IpGeocodeLookupTest < Test::Unit::TestCase #:nodoc: all
     @success.state = "IL"
     @success.country_code = "US"
     @success.success = true
-    
+
     @failure = GeoKit::GeoLoc.new
     @failure.provider = "hostip"
     @failure.city = "(Private Address)"
     @failure.success = false
-    
+
     @controller = LocationAwareController.new
     @request = ActionController::TestRequest.new
     @response = ActionController::TestResponse.new
@@ -50,14 +50,14 @@ class IpGeocodeLookupTest < Test::Unit::TestCase #:nodoc: all
     get :index
     verify
   end
-  
+
   def test_location_in_cookie
     @request.remote_ip = "good ip"
     @request.cookies['geo_location'] = CGI::Cookie.new('geo_location', @success.to_yaml)
     get :index
     verify
   end
-  
+
   def test_location_in_session
     @request.remote_ip = "good ip"
     @request.session[:geo_location] = @success
@@ -65,18 +65,18 @@ class IpGeocodeLookupTest < Test::Unit::TestCase #:nodoc: all
     get :index
     verify
   end
-  
+
   def test_ip_not_located
     GeoKit::Geocoders::IpGeocoder.expects(:geocode).with("bad ip").returns(@failure)
     @request.remote_ip = "bad ip"
     get :index
     assert_nil @request.session[:geo_location]
   end
-  
+
   private
-  
+
   def verify
-    assert_response :success    
+    assert_response :success
     assert_equal @success, @request.session[:geo_location]
     assert_not_nil cookies['geo_location']
     assert_equal @success, YAML.load(cookies['geo_location'].join)

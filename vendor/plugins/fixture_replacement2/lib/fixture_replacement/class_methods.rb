@@ -7,7 +7,7 @@ module FixtureReplacement
         :attributes => blk
       })
     end
-    
+
     attr_writer :defaults_file
 
     def defaults_file
@@ -28,7 +28,7 @@ module FixtureReplacement
       raise_if_environment_is_in_excluded_environments
       FixtureReplacementController::MethodGenerator.generate_methods
     end
-    
+
     # Any user defined instance methods (as well as default_*) need the module's class scope to be
     # accessible inside the block given to attributes_for
     #
@@ -38,7 +38,7 @@ module FixtureReplacement
     end
 
   private
-  
+
     def raise_if_environment_is_in_excluded_environments
       if environment_is_in_excluded_environments?
         raise FixtureReplacement::InclusionError, "FixtureReplacement cannot be included in the #{Object.const_get(:RAILS_ENV)} environment!"
@@ -51,7 +51,7 @@ module FixtureReplacement
     end
 
     def rails_root
-      defined?(RAILS_ROOT) ? RAILS_ROOT : nil      
+      defined?(RAILS_ROOT) ? RAILS_ROOT : nil
     end
   end
 end

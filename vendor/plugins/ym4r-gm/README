@@ -23,7 +23,7 @@ In your view, here is what you would have:
 	<%= @map.div(:width => 600, :height => 400) %>
 	</body></html>
 
-First you must output the header, used by all the maps of the page: It includes the Google Maps API JS code and the JS helper functions of YM4R/GM. Then we initialize the map by calling <tt>@map.to_html</tt>. In the body, we need a DIV whose +id+ is the same as the one passed to the GMap constructor in the controller. The call to <tt>@map.div</tt> outputs such a DIV. We pass to it options to set the width and height of the map in the style attribute of the DIV. 
+First you must output the header, used by all the maps of the page: It includes the Google Maps API JS code and the JS helper functions of YM4R/GM. Then we initialize the map by calling <tt>@map.to_html</tt>. In the body, we need a DIV whose +id+ is the same as the one passed to the GMap constructor in the controller. The call to <tt>@map.div</tt> outputs such a DIV. We pass to it options to set the width and height of the map in the style attribute of the DIV.
 
 <b>Note that you need to set a size for the map DIV element at some point or the map will not be displayed.</b> You have a few ways to do this:
 - You define it yourself, wherever you want. Usually as part of the layout definition in an external CSS.
@@ -55,7 +55,7 @@ Conversely, the YM4R gem does not need the plugin to work.
 Install like any other Rails plugin:
 	ruby script/plugin install svn://rubyforge.org/var/svn/ym4r/Plugins/GM/trunk/ym4r_gm
 
-As part of the installation procedure, the JavaScript files found in the <tt>PLUGIN_ROOT/javascript</tt> directory will be copied to the <tt>RAILS_ROOT/public/javascripts/</tt> directory. 
+As part of the installation procedure, the JavaScript files found in the <tt>PLUGIN_ROOT/javascript</tt> directory will be copied to the <tt>RAILS_ROOT/public/javascripts/</tt> directory.
 
 Moreover a <tt>gmaps_api_key.yml</tt> file will also be created in the <tt>RAILS_ROOT/config/</tt> folder. If this file already exists (installed for example by a previous version of the plugin), nothing will be done to it, so you can keep your configuration data even after updating the plugin. This file is a YAML representation of a hash, similar to the <tt>database.yml</tt> file in that the primary keys in the file are the different environments (development, test, production), since you will probably need to have different Google Maps API keys depending on that criteria (for example: a key for localhost for development and test; a key for your host for production). If you don't have any special need, there will be only one key associated with each environment. If however, you need to have multiple keys (for example if your app will be accessible from multiple URLs, for which you need different keys), you can also associate a hash to the environment, whose keys will be the different hosts. In this case, you will need to pass a value to the <tt>:host</tt> key when calling the method <tt>GMap.header</tt> (usually <tt>@request.host</tt>).
 
@@ -97,7 +97,7 @@ You can also have multiple maps. Just make sure you give them different DIV id's
 
 The other absolutely necessary initialization step in the controller is the setting of center and zoom:
 	@map1.center_zoom_init([49.12,-56.453],3)
-Withouth this code the map will display an empty grey rectangle with Google's logo. 
+Withouth this code the map will display an empty grey rectangle with Google's logo.
 
 Then in your template, you have 2 necessary calls:
 - The static <tt>GMap.header</tt>: Outputs the inclusion of the JavaScript file from Google to make use of the Google Maps API and by default a style declaration for VML objects, necessary to display polylines under IE. This default can be overriddent by passing <tt>:with_vml => false</tt> as option to the +header+ method. You can also pass to this method a <tt>:host</tt> option in order to select the correct key for the location where your app is currently deployed, in case the current environment has multiple possible keys. Usually, in this case, you should pass it <tt>@request.host</tt>. Finally you can override all the key settings in the configuration by passing a value to the <tt>:key</tt> key.
@@ -127,7 +127,7 @@ For example:
 	GMarker.new([12.4,65.6],:info_window => "<b>I'm a Popup window</b>",:title => "Tooltip")
 	GMarker.new(GLatLng.new([12.3,45.6]))
 	GMarker.new("Rue Clovis Paris France", :title => "geocoded")
-	
+
 
 ===Update of the map
 You are able to update the map through Ajax. In Ruby-on-Rails, you have something called RJS, which sends JavaScript created on the server as a response to an action, which is later interpreted by the browser. It is usually used for visual effects and replacing or adding elements. It can also accept arbitrary JavaScript and this is what YM4R uses.
@@ -150,7 +150,7 @@ Then you add it like any other overlay:
 	@map.overlay_init(polyline)
 
 ===GPolygon
-GPolygons are colored areas on the map. As of 29/12, this feature is not documented in the official GMaps API, but thanks to Steven Talcott Smith (http://www.talcottsystems.com), it is possible to use it now in ym4r. 
+GPolygons are colored areas on the map. As of 29/12, this feature is not documented in the official GMaps API, but thanks to Steven Talcott Smith (http://www.talcottsystems.com), it is possible to use it now in ym4r.
 
 The constructor takes as argument a list of GLatLng or a list of 2-element arrays, which will be transformed into GLatLng for you. Note that for polygons, the last point must be equal to the first, in order to have a closed loop. It can also take the color (in the <tt>#rrggbb</tt> form) of the stroke, the weight of the stroke, the opacity of the stroke, as well as the color of the fill and the opacity. These arguments are optional though.
 
@@ -159,9 +159,9 @@ For example:
 
 Then you add it like any other overlay:
 	@map.overlay_init(polygon)
-	
+
 ===GMarkerGroup
-A new type of GOverlay is available, called GMarkerGroup. 
+A new type of GOverlay is available, called GMarkerGroup.
 
 <b>To use it you would have to include in your HTML template the JavaScript file <tt>markerGroup.js</tt> after the call to <tt>GMap.header</tt> (because it extends the GOverlay class).</b> You should have something like that in your template:
 	<%= javascript_include_tag("markerGroup") %>
@@ -286,7 +286,7 @@ In the view, you should have something like the following:
 	<body>
 	<%= @map.div %>
 	</body>
-	</html> 
+	</html>
 Note the inclusion of the <tt>geoRssOverlay.js</tt> file.
 
 Other options to pass to the GeoRssOverlay constructor are the following:
@@ -296,7 +296,7 @@ Other options to pass to the GeoRssOverlay constructor are the following:
 - <tt>:content_div</tt>: Instead of having an info window appear, indicates the ID of the DIV where this info should be displayed.
 
 ===Adding new map types
-It is now possible to easily add new map types, on top of the already existing ones, like G_SATELLITE_MAP or G_NORMAL_MAP. The imagery for these new map types can come from layers of the standard map types or can be taken either from a WMS server or from pretiled images on a server (that can be generated with a tool that comes with the YM4R gem: refer to the README of the gem to know more about it). 
+It is now possible to easily add new map types, on top of the already existing ones, like G_SATELLITE_MAP or G_NORMAL_MAP. The imagery for these new map types can come from layers of the standard map types or can be taken either from a WMS server or from pretiled images on a server (that can be generated with a tool that comes with the YM4R gem: refer to the README of the gem to know more about it).
 
 For exemple, here is how you would setup layers from a public WMS server of the DMAP team of the American Navy:
 	layer = WMSLayer.new("http://columbo.nrlssc.navy.mil/ogcwms/servlet/WMSServlet/AccuWeather_Maps.wms",
@@ -327,7 +327,7 @@ The other constructor arguments have the same meaning as PreTiledLayer. Here is 
     	  y = @params[:y]
     	  z = @params[:z]
     	  begin
-            send_file "#{RAILS_ROOT}/public/tiles/tile_#{z}_#{x}_#{y}.png" , 
+            send_file "#{RAILS_ROOT}/public/tiles/tile_#{z}_#{x}_#{y}.png" ,
 		:type => 'image/png', :disposition => 'inline'
           rescue Exception
             render :nothing => true
@@ -379,7 +379,7 @@ And in your view, you pass ':local_search => true' to the GMap.header like this:
 <%= @map.div(:width => 600, :height => 400) %>
 
 You can pass options to the control_init as well. They are:
-:anchor => [:bottom_left (default), :bottom_right, :top_left, :top_right] 
+:anchor => [:bottom_left (default), :bottom_right, :top_left, :top_right]
 :offset_width => 10 (default)
 :offset_height => 20 (default)
 

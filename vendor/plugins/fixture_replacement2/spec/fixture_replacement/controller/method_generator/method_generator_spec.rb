@@ -9,11 +9,11 @@ module FixtureReplacementController
       ClassFactory.stub!(:fixture_replacement_module).and_return @module
       @generator = MethodGenerator.new(@user_attributes)
     end
-    
+
     it "should have the class method generate_methods" do
       MethodGenerator.should respond_to(:generate_methods)
     end
-        
+
     it "should be able to respond to generate_default_method" do
       @generator.should respond_to(:generate_default_method)
     end

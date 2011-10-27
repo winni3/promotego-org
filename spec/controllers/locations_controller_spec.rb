@@ -16,11 +16,11 @@ describe LocationsController do
       @location = mock_model(Location)
       Location.stub!(:find).and_return([@location])
     end
-  
+
     def do_get
       get :index
     end
-  
+
     it "should be successful" do
       do_get
       response.should be_success
@@ -30,12 +30,12 @@ describe LocationsController do
       do_get
       response.should render_template('index')
     end
-  
+
     it "should find all locations" do
       Location.should_receive(:find).with(:all).and_return([@location])
       do_get
     end
-  
+
     it "should assign the found locations for the view" do
       do_get
       assigns[:locations].should == [@location]
@@ -48,12 +48,12 @@ describe LocationsController do
       @location = mock_model(Location, :to_xml => "XML")
       Location.stub!(:find).and_return(@location)
     end
-  
+
     def do_get
       @request.env["HTTP_ACCEPT"] = "application/xml"
       get :index
     end
-  
+
     it "should be successful" do
       do_get
       response.should be_success
@@ -62,7 +62,7 @@ describe LocationsController do
     it "should find all locations" do
       do_get
     end
-  
+
     it "should render the found locations as xml" do
       @location.should_receive(:to_xml).and_return("XML")
       do_get
@@ -82,7 +82,7 @@ describe LocationsController do
                              :city_state_zip => "City, State 00000")
       Location.stub!(:find).and_return(@location)
     end
-  
+
     def do_get
       get :show, :id => "1"
     end
@@ -91,12 +91,12 @@ describe LocationsController do
       do_get
       response.should be_success
     end
-  
+
     it "should find the location requested" do
       Location.should_receive(:find).with("1").and_return(@location)
       do_get
     end
-  
+
     it "should assign the found location for the view" do
       do_get
       assigns[:location].should equal(@location)
@@ -114,7 +114,7 @@ describe LocationsController do
       @location = mock_model(Location, :to_xml => "XML")
       Location.stub!(:find).and_return(@location)
     end
-  
+
     def do_get
       @request.env["HTTP_ACCEPT"] = "application/xml"
       get :show, :id => "1"
@@ -124,12 +124,12 @@ describe LocationsController do
       do_get
       response.should be_success
     end
-  
+
     it "should find the location requested" do
       Location.should_receive(:find).with("1").and_return(@location)
       do_get
     end
-  
+
     it "should render the found location as xml" do
       @location.should_receive(:to_xml).and_return("XML")
       do_get
@@ -144,7 +144,7 @@ describe LocationsController do
       Location.stub!(:new).and_return(@location)
       @location.stub!(:contacts=)
     end
-  
+
     def do_get
       get :new
     end
@@ -153,17 +153,17 @@ describe LocationsController do
       do_get
       response.should be_success
     end
-  
+
     it "should create a new location" do
       Location.should_receive(:new).and_return(@location)
       do_get
     end
-  
+
     it "should not save the new location" do
       @location.should_not_receive(:save)
       do_get
     end
-  
+
     it "should assign the new location for the view" do
       do_get
       assigns[:location].should equal(@location)
@@ -190,7 +190,7 @@ describe LocationsController do
       @location = mock_model(Location, :user => owner)
       @locations.should_receive(:find).with(@location.id.to_s).and_return(@location)
     end
-  
+
     def do_get
       get :edit, :id => @location.id
     end
@@ -199,12 +199,12 @@ describe LocationsController do
       do_get
       response.should be_success
     end
-  
+
     it "should assign @user to be owner of the current location" do
       do_get
       assigns[:user].should equal(@location.user)
     end
-  
+
     it "should assign the found Location for the view" do
       do_get
       assigns[:location].should equal(@location)
@@ -224,15 +224,15 @@ describe LocationsController do
       @location.stub!(:user=)
       Location.stub!(:new).and_return(@location)
     end
-    
+
     describe "with successful save" do
-  
+
       def do_post
         @location.should_receive(:save).and_return(true)
         @location.should_receive(:geocode)
         post :create, :location => {}
       end
-  
+
       it "should create a new location" do
         Location.should_receive(:new).with({}).and_return(@location)
         do_post
@@ -257,20 +257,20 @@ describe LocationsController do
         post :create, :location => {:user_id => @other_user.id}
       end
     end
-    
+
     describe "with failed save" do
 
       def do_post
         @location.should_receive(:save).and_return(false)
         post :create, :location => {}
       end
-  
+
       it "should re-render 'new'" do
         @location.stub!(:geocode)
         do_post
         response.should render_template('new')
       end
-      
+
     end
   end
 
@@ -282,7 +282,7 @@ describe LocationsController do
       @locations.stub!(:find).with("1").and_return(@location)
       @user.stub!(:locations).and_return(@locations)
     end
-    
+
     describe "with successful update" do
 
       def do_put
@@ -334,7 +334,7 @@ describe LocationsController do
         put :update, :id => "1", :user => {:login => @other_user.login}
       end
     end
-    
+
     describe "with failed update" do
 
       def do_put
@@ -361,7 +361,7 @@ describe LocationsController do
       @user.should_receive(:locations).and_return(@locations)
       @locations.should_receive(:find).with("1").and_return(@location)
     end
-  
+
     def do_delete
       delete :destroy, :id => "1"
     end
@@ -369,12 +369,12 @@ describe LocationsController do
     it "should find the location requested" do
       do_delete
     end
-  
+
     it "should call destroy on the found location" do
       @location.should_receive(:destroy)
       do_delete
     end
-  
+
     it "should redirect to the locations list" do
       do_delete
       response.should redirect_to(locations_url)

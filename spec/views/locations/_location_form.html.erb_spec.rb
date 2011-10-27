@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "/locations/_location_form.html.erb" do
   include LocationsHelper
-  
+
   before do
     @user = mock_model(User)
     @user.stub!(:has_role?).and_return(false)

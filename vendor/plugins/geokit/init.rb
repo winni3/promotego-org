@@ -1,5 +1,5 @@
-# Load modules and classes needed to automatically mix in ActiveRecord and 
-# ActionController helpers.  All other functionality must be explicitly 
+# Load modules and classes needed to automatically mix in ActiveRecord and
+# ActionController helpers.  All other functionality must be explicitly
 # required.
 require 'geo_kit/defaults'
 require 'geo_kit/mappable'

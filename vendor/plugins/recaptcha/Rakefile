@@ -12,15 +12,15 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
-ALLISON = "/Library/Ruby/Gems/1.8/gems/allison-2.0.3/lib/allison.rb"  
-  
-Rake::RDocTask.new do |rd|  
-  rd.main = "README.rdoc"  
+ALLISON = "/Library/Ruby/Gems/1.8/gems/allison-2.0.3/lib/allison.rb"
+
+Rake::RDocTask.new do |rd|
+  rd.main = "README.rdoc"
   rd.rdoc_files.include "README.rdoc", "LICENSE", "lib/**/*.rb"
-  rd.title = "ReCAPTCHA"  
-  rd.options << '-N' # line numbers  
-  rd.options << '-S' # inline source  
-  rd.template = ALLISON if File.exist?(ALLISON)  
+  rd.title = "ReCAPTCHA"
+  rd.options << '-N' # line numbers
+  rd.options << '-S' # inline source
+  rd.template = ALLISON if File.exist?(ALLISON)
 end
 
 desc "Upload the rdoc to ambethia.com"

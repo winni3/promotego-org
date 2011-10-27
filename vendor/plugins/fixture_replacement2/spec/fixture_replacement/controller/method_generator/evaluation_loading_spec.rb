@@ -9,7 +9,7 @@ module FixtureReplacementController
       item_attributes = lambda do |o|
         o.category = default_category
       end
-      
+
       writing_attributes = lambda do |w|
         w.name = "foo"
       end
@@ -24,14 +24,14 @@ module FixtureReplacementController
       lambda {
         MethodGenerator.generate_methods
       }.should_not raise_error
-    end 
-    
+    end
+
     it "should merge the hash with item and writing when new_writing is called" do
       MethodGenerator.generate_methods
       @writing_attributes.should_receive(:merge!)
       new_writing
-    end   
-    
+    end
+
     it "should merge the has with item and writing when create_writing is called" do
       MethodGenerator.generate_methods
       @writing_attributes.should_receive(:merge!)

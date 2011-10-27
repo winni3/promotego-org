@@ -11,7 +11,7 @@ task :default => :spec
 desc "Run all specs"
 Spec::Rake::SpecTask.new do |t|
   t.spec_files = FileList['spec/**/*_spec.rb']
-  t.spec_opts = ['--options', 'spec/spec.opts']  
+  t.spec_opts = ['--options', 'spec/spec.opts']
 end
 
 desc "Generate documentation for the dont_repeat_yourself plugin and store html output in doc.html"
@@ -33,7 +33,7 @@ end
 #You can put web pages for your project on RubyForge at /var/www/gforge-projects/[yourproject]/. You can copy content into that directory using SCP (secure copy). Here's an example:
 #
 #$ scp index.html tom@rubyforge.org:/var/www/gforge-projects/support/
-#index.html    
+#index.html
 
 #require 'spec/rake/verify_rcov'
 #

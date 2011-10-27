@@ -11,7 +11,7 @@ describe User do
         violated "#{@user.errors.full_messages.to_sentence}" if @user.new_record?
       end
     end
-    
+
     it 'increments User#count' do
       @creating_user.should change(User, :count).by(1)
     end

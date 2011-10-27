@@ -7,7 +7,7 @@ Must Have:
         - TODO: update README
         - Add plugin version
 
-    Communication Tasks:        
+    Communication Tasks:
         - Send post to beta testers: Philippe, Paris on Rails, Simon, Bcn on Rails, Raul, Rafa, Christian Rynning, Markus: active rubyforge forum
         - Aptana RadRails report, vim report (ask Marco)?
         - generate this todo from rake todo ;-)
@@ -23,7 +23,7 @@ Nice to have:
         - Use http://codeforpeople.rubyforge.org/bones/ for project admin tasks
         - use bones for documentation?
 
-Someday Maybe: 
+Someday Maybe:
         - use allison for rdoc (?) Will I write any rdoc?
         - Use Validatable from Jay Fields
         - Ask DHH to record his voice saying: "Don't Repeat Yourself" and play that sound when the project contains some duplicate lines :-)

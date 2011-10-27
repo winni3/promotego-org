@@ -46,10 +46,10 @@ This will generate the following HTML for an array with two elements (one a new_
 
   <input id="comments_0_id" name="comments[0][id]" type="hidden" value="1" />
   <input id="comments_0_post_id" name="comments[0][post_id]" type="hidden" value="1" />
-  <input id="comments_0_content" name="comments[0][content]" size="30" type="text" value="a test comment" /> 
+  <input id="comments_0_content" name="comments[0][content]" size="30" type="text" value="a test comment" />
   <hr />
   <input id="comments_1_id" name="comments[1][post_id]" type="hidden" value="1" />
-  <input id="comments_1_content" name="comments[1][content]" size="30" type="text" value="" /> 
+  <input id="comments_1_content" name="comments[1][content]" size="30" type="text" value="" />
   <hr />
 
 
