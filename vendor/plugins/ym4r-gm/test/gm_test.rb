@@ -42,7 +42,7 @@ class TestGoogleMaps< Test::Unit::TestCase
     gmap = GMap.new("div","map")
     assert_equal("map.addHello(map.hoYoYo(123.4),map);",gmap.add_hello(gmap.ho_yo_yo(123.4),gmap).to_s)
   end
-  
+
   def test_declare_variable_latlng
     point = GLatLng.new([123.4,123.6])
     assert_equal("var point = new GLatLng(123.4,123.6);",point.declare("point"))
@@ -55,7 +55,7 @@ class TestGoogleMaps< Test::Unit::TestCase
   end
 
   def test_google_maps_geocoding
-    
+
 
     placemarks = Geocoding.get("Rue Clovis Paris")
     assert_equal(Geocoding::GEO_SUCCESS,placemarks.status)
@@ -64,16 +64,16 @@ class TestGoogleMaps< Test::Unit::TestCase
     assert_equal("FR",placemark.country_code)
     assert_equal("Paris",placemark.locality)
     assert_equal("75005",placemark.postal_code)
-    
+
     #test iwht multiple placemarks
     placemarks = Geocoding.get('hoogstraat, nl')
     assert_equal(Geocoding::GEO_SUCCESS,placemarks.status)
     assert(placemarks.length > 1)
     assert(placemarks[0].latitude != placemarks[1].latitude )
-    
+
 
   end
 
-  
+
 end
 

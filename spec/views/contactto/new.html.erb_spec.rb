@@ -5,7 +5,7 @@ describe "/contactto/new" do
     params[:id] = "obfuscated"
     render '/contactto/new'
   end
-  
+
   it "should have a form tag" do
     response.should have_tag('form[action=?]', '/contactto/send_mail') do
       with_tag('input[id=from]')

@@ -14,7 +14,7 @@ class YahooGeocoderTest < BaseGeocoderTest #:nodoc: all
   <ResultSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="urn:yahoo:maps" xsi:schemaLocation="urn:yahoo:maps http://api.local.yahoo.com/MapsService/V1/GeocodeResponse.xsd"><Result precision="city"><Latitude>37.7742</Latitude><Longitude>-122.417068</Longitude><Address></Address><City>SAN FRANCISCO</City><State>CA</State><Zip></Zip><Country>US</Country></Result></ResultSet>
   <!-- ws02.search.scd.yahoo.com uncompressed/chunked Mon Jan 29 18:00:28 PST 2007 -->
     EOF
-    
+
   def setup
     super
     @yahoo_full_hash = {:street_address=>"100 Spear St", :city=>"San Francisco", :state=>"CA", :zip=>"94105-1522", :country_code=>"US"}
@@ -22,7 +22,7 @@ class YahooGeocoderTest < BaseGeocoderTest #:nodoc: all
     @yahoo_full_loc = GeoKit::GeoLoc.new(@yahoo_full_hash)
     @yahoo_city_loc = GeoKit::GeoLoc.new(@yahoo_city_hash)
   end
-  
+
   # the testing methods themselves
   def test_yahoo_full_address
     response = MockSuccess.new
@@ -30,15 +30,15 @@ class YahooGeocoderTest < BaseGeocoderTest #:nodoc: all
     url = "http://api.local.yahoo.com/MapsService/V1/geocode?appid=Yahoo&location=#{CGI.escape(@address)}"
     GeoKit::Geocoders::YahooGeocoder.expects(:call_geocoder_service).with(url).returns(response)
     do_full_address_assertions(GeoKit::Geocoders::YahooGeocoder.geocode(@address))
-  end 
-  
+  end
+
   def test_yahoo_full_address_with_geo_loc
     response = MockSuccess.new
     response.expects(:body).returns(YAHOO_FULL)
     url = "http://api.local.yahoo.com/MapsService/V1/geocode?appid=Yahoo&location=#{CGI.escape(@full_address)}"
     GeoKit::Geocoders::YahooGeocoder.expects(:call_geocoder_service).with(url).returns(response)
     do_full_address_assertions(GeoKit::Geocoders::YahooGeocoder.geocode(@yahoo_full_loc))
-  end  
+  end
 
   def test_yahoo_city
     response = MockSuccess.new
@@ -47,21 +47,21 @@ class YahooGeocoderTest < BaseGeocoderTest #:nodoc: all
     GeoKit::Geocoders::YahooGeocoder.expects(:call_geocoder_service).with(url).returns(response)
     do_city_assertions(GeoKit::Geocoders::YahooGeocoder.geocode(@address))
   end
-  
+
   def test_yahoo_city_with_geo_loc
     response = MockSuccess.new
     response.expects(:body).returns(YAHOO_CITY)
-    url = "http://api.local.yahoo.com/MapsService/V1/geocode?appid=Yahoo&location=#{CGI.escape(@address)}"  
+    url = "http://api.local.yahoo.com/MapsService/V1/geocode?appid=Yahoo&location=#{CGI.escape(@address)}"
     GeoKit::Geocoders::YahooGeocoder.expects(:call_geocoder_service).with(url).returns(response)
     do_city_assertions(GeoKit::Geocoders::YahooGeocoder.geocode(@yahoo_city_loc))
-  end  
-  
+  end
+
   def test_service_unavailable
     response = MockFailure.new
     url = "http://api.local.yahoo.com/MapsService/V1/geocode?appid=Yahoo&location=#{CGI.escape(@address)}"
     GeoKit::Geocoders::YahooGeocoder.expects(:call_geocoder_service).with(url).returns(response)
     assert !GeoKit::Geocoders::YahooGeocoder.geocode(@yahoo_city_loc).success
-  end  
+  end
 
   private
 
@@ -74,14 +74,14 @@ class YahooGeocoderTest < BaseGeocoderTest #:nodoc: all
     assert_equal "100 Spear St, San Francisco, CA, 94105-1522, US", res.full_address
     assert_equal "yahoo", res.provider
   end
-  
+
   def do_city_assertions(res)
     assert_equal "CA", res.state
-    assert_equal "San Francisco", res.city 
+    assert_equal "San Francisco", res.city
     assert_equal "37.7742,-122.417068", res.ll
     assert res.is_us?
-    assert_equal "San Francisco, CA, US", res.full_address 
+    assert_equal "San Francisco, CA, US", res.full_address
     assert_nil res.street_address
     assert_equal "yahoo", res.provider
-  end  
+  end
 end

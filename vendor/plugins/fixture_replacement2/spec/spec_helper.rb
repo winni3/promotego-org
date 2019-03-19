@@ -12,7 +12,7 @@ Spec::Runner.configure do |config|
   config.prepend_before(:each) do
     FixtureReplacementController::AttributeCollection.clear_out_instances!
   end
-  
+
   config.prepend_after(:each) do
     FixtureReplacementController::AttributeCollection.clear_out_instances!
   end

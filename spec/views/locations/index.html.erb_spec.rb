@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "/locations/index.html.erb" do
   include LocationsHelper
-  
+
   before(:each) do
     @location_98 = mock_model(Location)
     @location_98.should_receive(:name).any_number_of_times.and_return("Location1 Name")

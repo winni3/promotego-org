@@ -36,7 +36,7 @@ end
 require File.dirname(__FILE__) + '/spec_helper'
 
 describe "Dupplicate lines Report: Don't Repeat Yourself" do
-  
+
   it { rails_application.
       with_threshold_of_duplicate_lines(4).
       with_netbeans_reporting.
@@ -50,7 +50,7 @@ rake dry:report:textmate             # TODO: checks if it works with someone who
 
 rake dry:cruise_control_artefact     # Copy the HTML report to the CruiseControl artefact folder
 
-Current Unit Test (RSpec specs) coverage is 95%. My objective is to get 100% after I receive some 
+Current Unit Test (RSpec specs) coverage is 95%. My objective is to get 100% after I receive some
 feedback from the beta testers ;-)
 
 == License dont_repeat_yourself plugin
@@ -66,10 +66,10 @@ More information in http://www.redhillonrails.org/#simian
 
 == Contribute
 
-* include unit tests (specs!) 
+* include unit tests (specs!)
 * run “rake spec” on your patched source
 * create a patch with “svn diff > something_rather_descriptive.diff”
-* Contact me 
+* Contact me
 
 == Contact
 

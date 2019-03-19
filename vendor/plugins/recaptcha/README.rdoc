@@ -39,7 +39,7 @@ error will be added to the object for you to use.
       # ...
     end
   end
-  
+
 == TODO
 * Remove Rails/ActionController dependencies
 * Framework agnostic

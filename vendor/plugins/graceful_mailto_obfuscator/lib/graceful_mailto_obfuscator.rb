@@ -3,19 +3,19 @@ module Loopy
     def self.included(base)
       base.alias_method_chain :mail_to, :graceful_obfuscation
     end
-    
+
     def self.obfuscate_email(email)
       email = email.gsub /@/, "^"
       email = email.gsub /\./, "$"
       email.tr "a-zA-Z", "n-za-mN-ZA-M"
     end
-    
+
     def self.decode_email(email)
       email = email.gsub /\^/, '@'
       email = email.gsub /\$/, '.'
       email.tr "a-zA-Z", "n-za-mN-ZA-M"
     end
-    
+
     def mail_to_with_graceful_obfuscation(*args)
       mailto = mail_to_without_graceful_obfuscation(*args)
       match, email = *mailto.match(/mailto:(.*)"/)

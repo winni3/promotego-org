@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "/users/edit.html.erb" do
   include UsersHelper
-  
+
   before(:each) do
     @user = mock_model(User, :login => 'user_login', :email => 'user_email', :password => 'user_password', :password_confirmation => 'user_password')
     @user.stub!(:has_role?).and_return(false)

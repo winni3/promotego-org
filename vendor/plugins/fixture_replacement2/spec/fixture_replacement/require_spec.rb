@@ -9,7 +9,7 @@ describe "FixtureReplacement" do
       load File.dirname(__FILE__) + "/../../lib/fixture_replacement.rb"
     }.should raise_error(LoadError, "Error in FixtureReplacement Plugin: could not find file!")
   end
-  
+
   it "should raise the error if the error is not a LoadError" do
     context.stub!(:require).and_raise(StandardError.new("foo"))
     lambda {

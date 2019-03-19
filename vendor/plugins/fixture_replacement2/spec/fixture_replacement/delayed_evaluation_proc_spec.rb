@@ -6,5 +6,5 @@ module FixtureReplacementController
       DelayedEvaluationProc.superclass.should == Proc
       (DelayedEvaluationProc.new {}).should be_a_kind_of(Proc)
     end
-  end  
+  end
 end

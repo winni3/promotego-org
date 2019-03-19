@@ -26,8 +26,8 @@ end
 task :rdoc => [:rdoc_without_analytics] do
   google_analytics = File.read(File.dirname(__FILE__) + "/etc/google_analytics")
   rdoc_index = File.dirname(__FILE__) + "/#{doc_directory}/index.html"
-  
-  contents = File.read(rdoc_index) 
+
+  contents = File.read(rdoc_index)
   contents.gsub!("</head>", "#{google_analytics}\n</head>")
 
   File.open(rdoc_index, "r+") do |file|
@@ -58,7 +58,7 @@ end
 def create_doc_directory
   unless File.exists?(doc_directory)
     `mkdir doc`
-  end  
+  end
 end
 
 task :create_doc_directory do

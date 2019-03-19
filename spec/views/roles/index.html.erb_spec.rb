@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../../spec_helper'
 
 describe "/roles/index.html.erb" do
   include RolesHelper
-  
+
   before(:each) do
     role_98 = mock_model(Role)
     role_98.should_receive(:name).and_return("MyString")
